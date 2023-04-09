@@ -181,6 +181,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditRoomType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditRoomType.Designer.cs">
+      <DependentUpon>AddEditRoomType.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddEditRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddEditRoomType.resx">
+      <DependentUpon>AddEditRoomType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddEditRoom.resx">
       <DependentUpon>AddEditRoom.cs</DependentUpon>
     </EmbeddedResource>

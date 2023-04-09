@@ -78,6 +78,7 @@
             this.listViewOccupancyByRoomType.Size = new System.Drawing.Size(661, 181);
             this.listViewOccupancyByRoomType.TabIndex = 8;
             this.listViewOccupancyByRoomType.UseCompatibleStateImageBehavior = false;
+            this.listViewOccupancyByRoomType.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewOccupancyByRoomType_MouseDoubleClick);
             // 
             // tabControl1
             // 
@@ -177,7 +178,7 @@
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(253, 155);
             this.labelInfo.TabIndex = 12;
-            this.labelInfo.Text = "NOTE: \r\nDouble click any \r\nof the rooms on the \r\nfirst list to edit\r\n\r\n";
+            this.labelInfo.Text = "NOTE: \r\nDouble click any \r\nof the rooms on the \r\nlist to edit\r\n\r\n";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // buttonAddRoomType
@@ -189,6 +190,7 @@
             this.buttonAddRoomType.TabIndex = 11;
             this.buttonAddRoomType.Text = "Add New Room Type";
             this.buttonAddRoomType.UseVisualStyleBackColor = true;
+            this.buttonAddRoomType.Click += new System.EventHandler(this.buttonAddRoomType_Click);
             // 
             // buttonAddRoom
             // 
