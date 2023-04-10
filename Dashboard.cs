@@ -21,6 +21,7 @@ namespace DBAS5206_Major_Project
         public Dashboard()
         {
             InitializeComponent();
+            listBoxPatient.SelectedIndexChanged += MyListBox_SelectedIndexChanged;
             // Removes all dashboard tab pages except login
             tabControl1.TabPages.Remove(tabPageLogout);
             tabControl1.TabPages.Remove(tabPageRoom);
@@ -242,6 +243,29 @@ namespace DBAS5206_Major_Project
             #endregion
         }
 
+        private void PopulateListBox()
+        {
+            //string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(ReturnDatabaseConnection()))
+            {
+
+                string query = "select patient_fname, patient_lname from patient";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    string firstName = reader.GetString(0);
+                    string lastName = reader.GetString(1);
+
+                    listBoxPatient.Items.Add(firstName + " " + lastName);
+
+                }
+                connection.Close();
+            }
+        }
         #endregion
 
         #region Event Handlers
@@ -300,6 +324,51 @@ namespace DBAS5206_Major_Project
                         }
                     }
                 }
+            }
+        }
+
+        // event to generate data dynamicaly inside the text boxes
+        private void MyListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int selectedName = listBoxPatient.SelectedIndex + 1;
+
+            //string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(ReturnDatabaseConnection()))
+            {
+                string query = "SELECT patient.patient_id, patient.patient_fname, patient.patient_lname, patient.sex, TREATMENT.NOTES " +
+                           "FROM patient " +
+                           "LEFT JOIN APPOINTMENT ON patient.patient_id = APPOINTMENT.patient_id " +
+                           "LEFT JOIN TREATMENT ON TREATMENT.TREATMENT_ID = APPOINTMENT.APPOINTMENT_id " +
+                           "WHERE patient.patient_id = @patient_id";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@patient_id", selectedName);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    string firstName = reader.GetString(1);
+                    string lastName = reader.GetString(2);
+                    string sex = reader.GetString(3);
+                    string des = "";
+                    if (!reader.IsDBNull(4))
+                    {
+                        des = reader.GetString(4);
+                    }
+
+                    textBoxID.Text = id.ToString();
+                    textBoxFirstName.Text = firstName;
+                    textBoxLastName.Text = lastName;
+                    textBoxGender.Text = sex;
+                    textBoxTreatment.Text = des;
+
+                }
+
+
             }
         }
 
@@ -415,6 +484,10 @@ namespace DBAS5206_Major_Project
                 PopulateRoomDashboardLists(conn);
             }
             #endregion
+            #endregion
+
+            #region Physician-Patient Dashboard
+            PopulateListBox();
             #endregion
         }
 
