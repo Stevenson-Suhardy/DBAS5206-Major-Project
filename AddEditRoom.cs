@@ -100,22 +100,6 @@ namespace DBAS5206_Major_Project
         {
             return Properties.Resources.connectionString;
         }
-
-        /// <summary>
-        /// This function is used to remove the delete button when user wants to create a new room
-        /// </summary>
-        public void RemoveDeleteButton()
-        {
-            buttonDelete.Visible = false;
-        }
-
-        /// <summary>
-        /// This function is used to show the delete button when editing the room
-        /// </summary>
-        public void ShowDeleteButton()
-        {
-            buttonDelete.Visible = true;
-        }
         #endregion
 
         #region Event Handlers
@@ -182,23 +166,6 @@ namespace DBAS5206_Major_Project
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult= DialogResult.Cancel;
-        }
-
-        /// <summary>
-        /// This event handler occurs when the user clicks the delete button and wants to delete a room
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            // Show confirmation message
-            var confirmation = MessageBox.Show("Are you sure you want to delete this record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            // If confirmed
-            if (confirmation == DialogResult.Yes)
-            {
-                // Return DialogResult.Yes as DialogResult
-                DialogResult= DialogResult.Yes;
-            }
         }
         #endregion
     }

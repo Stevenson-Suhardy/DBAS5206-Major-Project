@@ -113,7 +113,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(189, 34);
-            this.textBoxPassword.TabIndex = 6;
+            this.textBoxPassword.TabIndex = 2;
             // 
             // labelPassword
             // 
@@ -131,7 +131,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(402, 326);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(119, 43);
-            this.buttonLogin.TabIndex = 4;
+            this.buttonLogin.TabIndex = 3;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -142,7 +142,7 @@
             this.textBoxUsername.Location = new System.Drawing.Point(373, 214);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(189, 34);
-            this.textBoxUsername.TabIndex = 2;
+            this.textBoxUsername.TabIndex = 1;
             // 
             // labelUsername
             // 

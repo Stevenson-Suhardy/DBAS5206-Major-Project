@@ -252,9 +252,10 @@ namespace DBAS5206_Major_Project
         /// <param name="e"></param>
         private void listViewOccupancyByRooms_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            // New Form
             using (AddEditRoom editRoom = new AddEditRoom())
             {
-                editRoom.ShowDeleteButton();
+                // Show the delete button
                 editRoom.SetRoomLocation(listViewOccupancyByRooms.SelectedItems[0].SubItems[1].Text);
                 string oldLocation = editRoom.GetRoomLocation();
                 string sqlQuery = "SELECT * FROM ROOM_TYPE;";
@@ -299,28 +300,6 @@ namespace DBAS5206_Major_Project
                         }
                     }
                 }
-                else if (editRoom.DialogResult == DialogResult.Yes)
-                {
-                    sqlQuery = "EXEC Delete_Room '" + oldLocation + "';";
-                    using (SqlConnection conn = new SqlConnection(ReturnDatabaseConnection()))
-                    {
-                        conn.Open();
-                        using (SqlCommand command = new SqlCommand(sqlQuery, conn))
-                        {
-                            int row = command.ExecuteNonQuery();
-                            if (row == 1)
-                            {
-                                MessageBox.Show("Room " + oldLocation + " has been deleted.", "Sucess!");
-                                ResetListViews();
-                                PopulateRoomDashboardLists(conn);
-                            }
-                            else
-                            {
-                                MessageBox.Show("An error has occured.", "ERROR");
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -345,7 +324,6 @@ namespace DBAS5206_Major_Project
         {
             using (AddEditRoom addRoom = new AddEditRoom())
             {
-                addRoom.RemoveDeleteButton();
                 if (addRoom.ShowDialog() == DialogResult.OK)
                 {
                     using (SqlConnection conn = new SqlConnection(ReturnDatabaseConnection()))
@@ -376,7 +354,7 @@ namespace DBAS5206_Major_Project
         }
 
         /// <summary>
-        /// This event handler will happen when the form loads. It will query from the database and count how many patients are discharging.
+        /// This event handler will happen when the form loads. It will query from the database and fill in the list views in each dashboard.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -384,6 +362,7 @@ namespace DBAS5206_Major_Project
         {
             #region Room Utilization Dashboard
 
+            // This three regions will set the properties for each listviews
             #region First ListView Properties
             // Set the first list view properties
             listViewOccupancyByRooms.View = View.Details;
@@ -471,7 +450,7 @@ namespace DBAS5206_Major_Project
         }
 
         /// <summary>
-        /// 
+        /// This event handler will show a form to add a new room type to the database
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -507,8 +486,12 @@ namespace DBAS5206_Major_Project
                 }
             }
         }
-        #endregion
 
+        /// <summary>
+        /// This event handler will open up another form filled with the clicked room in the list view. The user is able to update the room details if needed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listViewOccupancyByRoomType_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (AddEditRoomType editRoomType = new AddEditRoomType())
@@ -540,5 +523,7 @@ namespace DBAS5206_Major_Project
                 }
             }
         }
+        #endregion
+
     }
 }

@@ -34,7 +34,6 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.comboBoxRoomType = new System.Windows.Forms.ComboBox();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelRoomLocation
@@ -96,23 +95,11 @@
             this.comboBoxRoomType.Size = new System.Drawing.Size(170, 37);
             this.comboBoxRoomType.TabIndex = 6;
             // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.buttonDelete.Location = new System.Drawing.Point(104, 396);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(168, 42);
-            this.buttonDelete.TabIndex = 7;
-            this.buttonDelete.Text = "Delete Room";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
             // AddEditRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 450);
-            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.comboBoxRoomType);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -134,6 +121,5 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ComboBox comboBoxRoomType;
-        private System.Windows.Forms.Button buttonDelete;
     }
 }
