@@ -1,4 +1,20 @@
-﻿using System;
+﻿/**
+ * Date: April 9, 2023
+ * Course: DBAS5206-05
+ * Group 5:
+ * Stevenson Suhardy (Room Utilization Dashboard, AddEditRoom, AddEditRoomType)
+ * Megh Patel (Physician-Patient Dashboard)
+ * Harsh Patel (Assisted Physician-Patient Dashboard)
+ * Jason Lyn (Assisted Room Utilization Dashboard)
+ * 
+ * IMPORTANT
+ * Run the SQL Script
+ * To make this application work, the connectionString needs to be changed from "STEVENSON" to whatever the SQL server name, the professor or anyone else have in the laptop.
+ * 
+ * Right-click project -> Properties -> Resources -> Change connectionString Data Source from STEVENSON to SQL Server name that is installed in the laptop / computer.
+ */
+
+using System;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -228,15 +244,18 @@ namespace DBAS5206_Major_Project
                 {
                     while (reader.Read())
                     {
-                        arr.Add(reader.GetInt32(0).ToString());
-                        arr.Add(reader.GetString(1));
-                        arr.Add(reader.GetString(2));
-                        arr.Add(reader.GetString(3));
-                        arr.Add(reader.GetString(4));
-                        arr.Add(reader.GetString(5));
-                        arr.Add(reader.GetString(6));
-                        listViewDischargingPatient.Items.Add(new ListViewItem(arr.ToArray()));
-                        arr.Clear();
+                        if (!reader.IsDBNull(0))
+                        {
+                            arr.Add(reader.GetInt32(0).ToString());
+                            arr.Add(reader.GetString(1));
+                            arr.Add(reader.GetString(2));
+                            arr.Add(reader.GetString(3));
+                            arr.Add(reader.GetString(4));
+                            arr.Add(reader.GetString(5));
+                            arr.Add(reader.GetString(6));
+                            listViewDischargingPatient.Items.Add(new ListViewItem(arr.ToArray()));
+                            arr.Clear();
+                        }
                     }
                 }
             }
